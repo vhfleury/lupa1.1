@@ -1,0 +1,58 @@
+# Proxy reverso do Lupa (Etapa 6; modos de certificado na Etapa 8.1). Um unico origin HTTPS:
+#   /api/*  -> api:8000 (prefixo /api removido; a API nao sabe do prefixo)
+#   /*      -> front:8080 (SPA estatica)
+# Assim nao ha CORS e o cookie de sessao (Secure, SameSite=Strict, Path=/) funciona.
+# O Caddy substitui o X-Forwarded-For recebido pelo IP real do cliente (nao confia em cabecalho
+# vindo de fora); a API confia nesse cabecalho so quando vem da rede `borda`.
+#
+# Modo de certificado (LUPA_TLS_MODO, arquivo proxy/modos/<modo>.caddy):
+#   interno    (padrao, desenvolvimento) CA interna do Caddy, `tls internal`, localhost e proxy
+#   acme       dominio LUPA_DOMINIO com certificado automatico (HTTP-01: a porta 80 do host vai a
+#              8080 do conteiner), e-mail LUPA_ACME_EMAIL; dados do ACME em volume persistente
+#   fornecido  dominio LUPA_DOMINIO com certificado e chave montados em /certs (LUPA_TLS_CERT,
+#              LUPA_TLS_CHAVE no docker-compose.prod.yml)
+# Validacao dos tres modos: scripts/validar_caddyfile.sh (caddy validate em conteiner).
+{
+	admin off
+	persist_config off
+	skip_install_trust
+	http_port 8080
+	https_port 8443
+}
+
+# Cabecalhos e rotas comuns a todos os modos.
+(lupa_site) {
+	encode gzip
+	# Etapa 6.10: cabecalhos de seguranca (conferidos por scripts/verificar_cabecalhos.py e pelo
+	# E2E seguranca.spec.ts, que falham se faltar algum ou se a CSP afrouxar).
+	# CSP: nada inline. O script de partida do SvelteKit e externalizado no build
+	# (front/scripts/externalizar-inicio.mjs) e os estilos dinamicos usam `style:` (CSSOM), entao
+	# `unsafe-inline` nao e necessario. Unica excecao: o anunciador de rota do proprio SvelteKit
+	# (div aria-live com atributo style fixo, gerado pelo framework) exige o hash desse estilo
+	# com 'unsafe-hashes' (vale so para esse texto exato). Imagens das paginas vem da propria API.
+	# HSTS: fica em cada modo (proxy/modos/*.caddy).
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		X-Frame-Options DENY
+		Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-hashes' 'sha256-S8qMpvofolR8Mpjy4kQvEm7m1q8clzU4dfDH0AmvZjo='; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
+		Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), xr-spatial-tracking=()"
+		Cross-Origin-Opener-Policy same-origin
+		Cross-Origin-Resource-Policy same-origin
+		X-Permitted-Cross-Domain-Policies none
+		-Server
+	}
+	handle_path /api/* {
+		reverse_proxy api:8000
+	}
+	handle {
+		reverse_proxy front:8080
+	}
+}
+
+import modos/{$LUPA_TLS_MODO:interno}.caddy
+
+# Saude do proprio proxy, so para o healthcheck do conteiner (porta nao publicada).
+:8081 {
+	respond /saude "ok" 200
+}

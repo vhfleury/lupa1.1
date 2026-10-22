@@ -1,0 +1,100 @@
+# Politica de recusa do chat (Etapa 5.7). Classificador por regras aplicado ANTES de chamar o
+# modelo, sobre a pergunta em minusculas e sem acentos (escreva os padroes assim). Vedado pela
+# Res. CNJ 615/2025 (Anexo, AR2 a AR4) e pelo contrato do agente (docs/agente.md): valorar prova,
+# tipificar, concluir sobre norma ou precedente, opinar sobre o resultado, redigir ato e calcular
+# prazo sem a ferramenta. Mudou um padrao: suba a versao e rode tests/agente/test_recusa.py
+# (recall 100% nas vedadas, falso positivo <= 10% nas permitidas).
+versao: "1"
+categorias:
+  valoracao_prova:
+    limite: "Não posso avaliar se uma prova é suficiente, forte ou confiável: isso é valoração de prova, que cabe ao assessor e ao magistrado."
+    sugestao: "Posso localizar onde a prova está e mostrar o que a peça diz. Experimente: \"Em que páginas está o depoimento da testemunha?\""
+    padroes:
+      - id: vp01_credibilidade
+        regex: '\b(?:confiave(?:l|is)|credibilidade|crivel|criveis|idone[oa]s?|idoneidade|verossimil|verossimilhanca|convincentes?)\b'
+      - id: vp02_suficiencia
+        regex: '\b(?:provas?|indicios|elementos)\b.{0,60}\b(?:suficientes?|insuficientes?|robust[oa]s?|frageis|fragil|frac[oa]s?|fortes?|bastam|basta|bastantes?)\b'
+      - id: vp03_suficiente_para
+        regex: '\b(?:suficientes?|insuficientes?|bastante)\b.{0,30}\bpara\s+(?:condenar|condenacao|absolver|absolvicao|pronunciar)\b'
+      - id: vp04_mentira
+        regex: '\b(?:mentindo|mentiu|mente|falando\s+a\s+verdade|fala\s+a\s+verdade|disse\s+a\s+verdade)\b'
+      - id: vp05_peso
+        regex: '\b(?:peso|valor\s+probatorio|forca\s+probante|forca\s+probatoria|eficacia\s+probatoria)\b'
+      - id: vp06_meio_de_prova_valido
+        regex: '\b(?:depoimentos?|testemunh\w*|laudos?|confissao|provas?|pericia|reconhecimento)\b.{0,50}\b(?:e|foi|esta|parece|seria)\s+(?:valid[oa]|invalid[oa]|confiavel|contraditori[oa]|coerente|incoerente|ilicit[oa]|licit[oa])\b'
+      - id: vp07_comprova
+        regex: '\b(?:comprova(?:m|da|do)?|demonstra(?:m)?|prova(?:m)?)\s+(?:a\s+|o\s+)?(?:autoria|materialidade|culpa|dolo|culpabilidade)\b'
+      - id: vp08_ha_prova_de
+        regex: '\b(?:ha|existe|existem)\s+(?:provas?|indicios)\b.{0,30}\b(?:autoria|materialidade|culpa|dolo)\b'
+  tipificacao:
+    limite: "Não posso dizer que crime é ou como enquadrar a conduta: isso é tipificação, uma conclusão jurídica que cabe ao assessor e ao magistrado."
+    sugestao: "Posso mostrar como a denúncia e a sentença descreveram e capitularam o fato. Experimente: \"Quais artigos a denúncia cita? Em que página?\""
+    padroes:
+      - id: tp01_tipificar
+        regex: '\b(?:tipific\w+|enquadr\w+|capitul(?:ar|aria|e|o)\b|desclassific\w+)'
+      - id: tp02_qual_crime
+        regex: '\b(?:qual|que)\s+(?:e\s+o\s+)?crime\b'
+      - id: tp03_configura
+        regex: '\b(?:e|seria|configura|configuraria|caracteriza|caracterizaria|constitui|constituiria)\s+(?:crime\s+de\s+)?(?:furto|roubo|homicidio|latrocinio|estelionato|trafico|receptacao|lesao|ameaca|estupro|peculato|extorsao|uso|porte|posse|tentativa|crime\s+consumado|crime\s+tentado)\b'
+      - id: tp04_um_ou_outro
+        regex: '\b(?:furto|roubo|homicidio|trafico|uso|receptacao|estelionato|lesao)\s+ou\s+(?:furto|roubo|homicidio|trafico|uso|receptacao|estelionato|lesao)\b'
+      - id: tp05_incide
+        regex: '\b(?:incide|incidiria|incidem|aplica-se|se\s+aplica|cabe|caberia|deve\s+incidir|ha|houve)\b.{0,40}\b(?:qualificadoras?|causas?\s+de\s+(?:aumento|diminuicao)|agravantes?|atenuantes?|privilegio|majorantes?|minorantes?)\b'
+      - id: tp06_dolo
+        regex: '\b(?:houve|ha|agiu\s+com)\s+(?:dolo|culpa|dolo\s+eventual|culpa\s+consciente)\b'
+  conclusao_juridica:
+    limite: "Não posso concluir se uma norma, súmula ou precedente se aplica, nem se houve nulidade ou ilegalidade: isso é juízo jurídico, que cabe ao assessor e ao magistrado."
+    sugestao: "Posso localizar onde a parte alega a tese e o que a decisão disse sobre ela. Experimente: \"Em que página a defesa alega nulidade?\""
+    padroes:
+      - id: cj01_nulidade
+        regex: '\b(?:houve|ha|existe|ocorreu|configura|configurou|reconhecer|deve\s+ser\s+reconhecida)\s+(?:a\s+|alguma\s+)?(?:nulidade|cerceamento|bis\s+in\s+idem|excesso\s+de\s+prazo|constrangimento\s+ilegal|ilegalidade|inepcia)\b'
+      - id: cj02_aplica_norma
+        regex: '\b(?:aplica-se|se\s+aplica|aplicavel|aplicaveis|incide|cabe\s+aplicar|deve\s+ser\s+aplicad[oa])\b.{0,40}\b(?:sumulas?|precedentes?|tema|temas|artigos?|art|lei|norma|jurisprudencia|entendimento)\b'
+      - id: cj03_norma_aplica
+        regex: '\b(?:sumulas?|precedentes?|tema|jurisprudencia|entendimento)\b.{0,50}\b(?:se\s+aplica|aplica-se|incide|aplicavel|vale\s+para)\b'
+      - id: cj04_legalidade
+        regex: '\b(?:e|esta|foi|seria)\s+(?:legal|ilegal|constitucional|inconstitucional|nul[oa]|inept[oa]|abusiv[oa])\b'
+      - id: cj05_juiz_errou
+        regex: '\b(?:juiz|juiza|magistrad[oa]|sentenca|acordao|decisao|dosimetria)\b.{0,40}\b(?:errou|acertou|equivocou|corret[oa]|incorret[oa]|equivocad[oa]|acertad[oa]|bem\s+fundamentad[oa]|mal\s+fundamentad[oa])\b'
+      - id: cj06_fundamentacao
+        regex: '\bfundamentac\w+\b.{0,30}\b(?:suficiente|insuficiente|adequada|inadequada|valida|invalida|idonea|inidonea)\b'
+      - id: cj07_cabimento
+        regex: '\b(?:cabivel|cabiveis|cabe|caberia)\s+(?:um\s+|o\s+|a\s+)?(?:recurso|habeas\s+corpus|embargos|revisao\s+criminal|agravo|apelacao|mandado\s+de\s+seguranca)\b'
+  opiniao_resultado:
+    limite: "Não posso opinar sobre o resultado do julgamento, sobre a pena adequada nem sobre como votar: a decisão é do magistrado."
+    sugestao: "Posso organizar o que as partes pediram e o que a sentença decidiu, com as páginas. Experimente: \"O que a defesa pede nas razões de apelação?\""
+    padroes:
+      - id: or01_deve_ser
+        regex: '\b(?:deve|deveria|devem|deveriam|vai|merece|mereceria|precisa)\s+(?:ser\s+)?(?:provid[oa]s?|desprovid[oa]s?|absolvid[oa]s?|condenad[oa]s?|reformad[oa]s?|mantid[oa]s?|anulad[oa]s?|solt[oa]s?|pres[oa]s?|cassad[oa]s?|reduzid[oa]s?|aumentad[oa]s?)\b'
+      - id: or02_provimento
+        regex: '\b(?:dar|negar|dou|nego|daria|negaria)\s+provimento\b'
+      - id: or03_opiniao
+        regex: '\b(?:sua\s+opiniao|na\s+sua\s+opiniao|em\s+sua\s+opiniao|voce\s+(?:acha|pensa|recomenda|sugere|entende|considera|faria|votaria|decidiria)|o\s+que\s+voce\s+(?:acha|pensa|recomenda|sugere|faria))\b'
+      - id: or04_pena_justa
+        regex: '\bpenas?\b.{0,30}\b(?:justa|adequada|correta|ideal|excessiva|exagerada|desproporcional|proporcional|branda|severa)\b'
+      - id: or05_chances
+        regex: '\b(?:chances?|probabilidade|possibilidade\s+real)\s+de\s+(?:exito|sucesso|provimento|absolvicao|condenacao|reforma|ganhar|perder)\b'
+      - id: or06_votar
+        regex: '\b(?:como|devo|deve|deveria|devemos)\b.{0,40}\b(?:votar|decidir|julgar)\b'
+      - id: or07_culpado
+        regex: '\b(?:e|seria|esta)\s+(?:culpad[oa]|inocente)\b|\bculpad[oa]\s+ou\s+inocente\b'
+      - id: or08_resultado
+        regex: '\b(?:qual|como)\s+(?:seria|deve\s+ser|deveria\s+ser|sera)\s+(?:o\s+)?(?:resultado|julgamento|desfecho|voto)\b'
+  redacao_ato:
+    limite: "Não redijo atos judiciais (minuta de voto, decisão, ementa, despacho): a redação é do gabinete."
+    sugestao: "Posso reunir as informações dos autos com as páginas para apoiar a redação. Experimente: \"Liste os eventos processuais com datas e páginas.\""
+    padroes:
+      - id: ra01_redigir
+        regex: '\b(?:redija|redigir|redige|escreva|escrever|elabore|elaborar|minute|minutar|prepare|preparar|rascunhe|rascunhar|faca|fazer|gere|gerar|monte|montar|sugira|sugerir)\b.{0,40}\b(?:minuta|voto|ementa|acordao|decisao|despacho|sentenca|dispositivo|parecer|oficio|mandado)\b'
+      - id: ra02_minuta
+        regex: '\bminutas?\b'
+  calculo_proprio:
+    limite: "Não calculo prazos, tempestividade ou prescrição por conta própria: o cálculo é feito pela validação determinística do Lupa, com todos os valores e páginas."
+    sugestao: "Posso rodar a validação e mostrar o resultado com as datas usadas. Experimente: \"O recurso é tempestivo?\""
+    padroes:
+      - id: cp01_por_conta
+        regex: '\b(?:calcul\w+|cont\w+|som\w+|compute|computar|faca\s+a\s+conta|refaca)\b.{0,60}\b(?:voce\s+mesmo|por\s+conta\s+propria|manualmente|a\s+mao|de\s+cabeca)\b'
+      - id: cp02_sem_ferramenta
+        regex: '\bsem\s+(?:usar\s+)?(?:a\s+|o\s+)?(?:ferramenta|validacao|sistema|motor)\b'
+      - id: cp03_ignore_validacao
+        regex: '\b(?:ignore|desconsidere|nao\s+use)\s+(?:a\s+|o\s+)?(?:validacao|ferramenta|calculo\s+do\s+sistema|motor)\b'

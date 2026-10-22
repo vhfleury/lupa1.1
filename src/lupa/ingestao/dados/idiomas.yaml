@@ -1,0 +1,25 @@
+# Palavras funcionais por idioma para a deteccao de idioma por paragrafo (Etapa 4D.6).
+# Heuristica sem dependencia nova: conta palavras exclusivas de cada idioma (as comuns a pt e
+# es ficam fora das listas). Limitacao: segmentos curtos (menos de `min_palavras`) nao sao
+# avaliados; latim juridico ("habeas corpus", "in dubio pro reo") nao tem palavras funcionais
+# listadas e nao dispara. Mudou uma lista ou limiar, suba a versao.
+versao: "1"
+esperado: pt
+min_palavras: 8
+min_funcionais: 3
+# e as funcionais estrangeiras precisam ser esta fracao das palavras do segmento (citacao curta
+# em ingles dentro de frase em portugues fica abaixo)
+min_proporcao: 0.4
+# o idioma estrangeiro precisa ter pelo menos este multiplo das funcionais do portugues
+vantagem: 2.0
+stopwords:
+  pt: [o, os, as, um, uma, do, da, dos, das, no, na, nos, nas, ao, aos, em, e, que, com, para,
+       pelo, pela, pelos, pelas, nao, foi, sao, ser, esta, este, seu, sua, mas, ou, se, como,
+       mais, ja, tambem, quando, onde, entre, sobre, ate, sem, seus, suas, isso, essa, esse,
+       deve, pode, houve, apos, foram, sera, nem, porque, de, por, ela, ele]
+  en: [the, of, and, to, is, was, were, are, be, been, this, that, with, for, on, it, by,
+       from, at, an, any, must, not, should, which, who, will, would, has, have, had, filed,
+       time, late, all, your, you, its, their, these, those, or]
+  es: [el, los, las, del, y, pero, muy, fue, han, sido, hay, estos, eso, usted, ustedes,
+       cuando, donde, hasta, sin, su, sus, nosotros, tambien, ya, lo, le, les, con, una, un,
+       es, unos, unas, aunque, despues, hacia]

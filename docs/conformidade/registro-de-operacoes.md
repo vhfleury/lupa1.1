@@ -1,0 +1,17 @@
+# Registro das operações de tratamento
+
+> **MINUTA para revisão de advogado; não é parecer jurídico.** Versão 0.1 · 21 de outubro de 2026 · subetapa 8.2. Bases legais descritas aqui são **a confirmar pelo advogado**.
+
+Atende ao dever de controlador e operador manterem registro das operações de tratamento (LGPD, art. 37). Controlador: Victor Hugo Fleury Barreto. Operadores: **Anthropic** (fornecedor do modelo, só no fluxo 5) e **provedor de hospedagem** (só se o piloto sair da infraestrutura própria; situação a registrar ao fim da 8.1). O operador trata segundo as instruções do controlador (art. 39); para a Anthropic, as instruções são os termos comerciais da API.
+
+| # | Operação | Dados | Finalidade | Base legal (descrição) | Retenção | Medidas de segurança | Operadores |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Cadastro de usuário | usuário, nome de exibição, papel, gabinete, hash da senha, segredo TOTP | dar acesso pessoal | execução do acordo de uso (art. 7º, V) | enquanto ativo; registro mínimo após desativação | hash forte de senha, TOTP cifrado, reset manual registrado, sem e-mail | hospedagem, se houver |
+| 2 | Autenticação e auditoria | IP, localização aproximada, data e hora, ação, processo, objeto (identificadores e hashes), resultado, versões do modelo e do prompt | segurança, prestação de contas, relatório ao tribunal (Res. CNJ 615/2025, art. 19, § 7º) | legítimo interesse em segurança (art. 7º, IX) | maior que a dos processos (prazo a definir) | append-only com encadeamento de hash; sem conteúdo dos autos nem texto de perguntas; rate limit e bloqueio progressivo | hospedagem, se houver |
+| 3 | Ingestão dos autos | PDF/ZIP de processo público, com dados de réus, vítimas e testemunhas, inclusive sensíveis e penais | apoio à conferência do processo | exercício regular de direitos em processo judicial (art. 7º, VI; art. 11, II, "d") | até o descarte pedido pelo gabinete ou fim do piloto | bloqueio de sigilo; cifra antes do parser; worker isolado sem rede; temporário 0600 apagado ao fim | hospedagem, se houver |
+| 4 | Extração e validações | texto das páginas, datas, partes pseudonimizadas, fatos com evidência, achados | linha do tempo e validações determinísticas | idem 3 | idem 3 | texto, evidências e índices cifrados com chave por processo; pseudonimização; identidades cifradas com chave própria e leitura registrada | hospedagem, se houver |
+| 5 | Chat e dossiê (modelo externo) | trechos pseudonimizados, pergunta do usuário, resposta | localizar, resumir, explicar achados | idem 3 | no Lupa: mensagens cifradas até o descarte; no fornecedor do modelo: conforme contrato (conferir) | pseudonimização; TLS; conferência de citação por código; detecção de injeção com processo em revisão; tetos de tokens; contrato sem treino (conferir) | **Anthropic** |
+| 6 | Backup | cópia cifrada do banco e do storage | recuperação de desastre | legítimo interesse em continuidade e segurança (art. 7º, IX), acessório a 1-5 | 30 dias (`LUPA_BACKUP_RETENCAO_DIAS`) | cifra `age`; chave mensal destruída quando não há backup vivo; restauração testada por hash | hospedagem, se houver |
+| 7 | Descarte | chave do processo (DEK) | eliminar dados ao fim da finalidade | idem 3 | — | destruição da DEK no Vault; evento de auditoria; backups expiram em 30 dias | — |
+
+Transferência internacional (fluxo 5): hipótese legal a confirmar pelo advogado. Revisar este registro a cada mudança de fluxo, operador ou versão.

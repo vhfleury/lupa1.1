@@ -1,0 +1,12 @@
+# Suspensões de prazo processual penal. Lista inicial; o gabinete deve conferir e completar (portarias do TJGO).
+versao: "2026.10.0"
+fonte: "CPP art. 798-A (recesso de 20/12 a 20/01); portarias do TJGO a incluir. Pendente de confirmação pelo gabinete"
+suspensoes:
+  - inicio: 2025-12-20
+    fim: 2026-01-20
+    descricao: "recesso forense 2025/2026"
+    base_legal: "art. 798-A CPP (verificar exceções para réu preso)"
+  - inicio: 2026-12-20
+    fim: 2027-01-20
+    descricao: "recesso forense 2026/2027"
+    base_legal: "art. 798-A CPP (verificar exceções para réu preso)"

@@ -1,0 +1,18 @@
+# Fim de linha (Etapa 7.10): LF no repositorio e na copia de trabalho para scripts e configuracao,
+# inclusive no Windows; sem isso o sh do conteiner quebra em \r.
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.hcl text eol=lf
+*.md text eol=lf
+*.ts text eol=lf
+*.svelte text eol=lf
+*.json text eol=lf
+Caddyfile text eol=lf
+Dockerfile text eol=lf
+*.ps1 text eol=lf
+*.pdf binary
+*.png binary
+*.docx binary

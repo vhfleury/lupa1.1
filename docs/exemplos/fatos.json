@@ -1,0 +1,236 @@
+[
+  {
+    "id": "2b116a02-2979-57bc-b6f5-900ba2890fbd",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "tipo_recurso",
+    "valor": {
+      "tipo": "apelacao",
+      "recorrente": "defesa"
+    },
+    "evidencias": [
+      {
+        "id": "4e2e87db-555c-5e48-8b94-dd182d5d92b1",
+        "pagina_id": "9bcc2fc1-4d2c-5377-8827-76b151802c81",
+        "trecho": "Termo de apelação interposto pela defesa.",
+        "inicio": 0,
+        "fim": 41
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "d51cc934-8e75-56dd-ac2e-ddf94f3df133",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_intimacao_defesa",
+    "valor": "2026-09-01",
+    "evidencias": [
+      {
+        "id": "78f96bfa-1b1e-55ac-9638-dbfc9fa38ce1",
+        "pagina_id": "9b6d5b04-2ea5-59bd-bb1c-3dd687038290",
+        "trecho": "Certidão: defensor intimado da sentença em 01/09/2026.",
+        "inicio": 0,
+        "fim": 54
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "613af7cd-05d5-5fe1-ae54-415541244af3",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_intimacao_reu",
+    "valor": "2026-09-03",
+    "evidencias": [
+      {
+        "id": "14993cd4-c6b0-5acc-8671-937d539919e1",
+        "pagina_id": "9b6891ad-cfbc-5a31-a5fa-6a40e005ea1a",
+        "trecho": "Certidão: réu intimado pessoalmente em 03/09/2026.",
+        "inicio": 0,
+        "fim": 50
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "93b52cd4-0c3b-511e-b129-dd1630675d1b",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_interposicao_recurso",
+    "valor": "2026-09-08",
+    "evidencias": [
+      {
+        "id": "d233f568-1b66-5a80-88e8-7678570ae152",
+        "pagina_id": "edb56c50-61a2-5fa9-b0f2-7ef033945058",
+        "trecho": "Petição de apelação protocolada em 08/09/2026.",
+        "inicio": 0,
+        "fim": 46
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "96472176-2cbf-5694-b1fa-ca42497f8e7b",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "pena_maxima_abstrata",
+    "valor": 48,
+    "evidencias": [
+      {
+        "id": "843b4b3a-bb32-5e0e-a3e3-56641938a0e7",
+        "pagina_id": "c4de3b64-870f-5436-96b2-9a5baaf600ce",
+        "trecho": "Crime com pena de reclusão de 1 a 4 anos.",
+        "inicio": 0,
+        "fim": 41
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "ee0787c9-6d81-593a-95e8-2b1869a7835f",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_fato",
+    "valor": "2020-03-15",
+    "evidencias": [
+      {
+        "id": "41c5e2e7-c9a7-5426-abd7-7dff446988ea",
+        "pagina_id": "47e1770f-0f39-5d33-b6ec-5fb4bd9bc0fe",
+        "trecho": "Denúncia: fato ocorrido em 15/03/2020.",
+        "inicio": 0,
+        "fim": 38
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "961ec0c6-bf76-551d-9c8b-a1aadc343a2f",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_recebimento_denuncia",
+    "valor": "2021-02-10",
+    "evidencias": [
+      {
+        "id": "31a19ea9-82f4-5f58-a1d4-68fb4303838c",
+        "pagina_id": "0a2a2835-8ddf-5b6e-8f86-0068a6084a4d",
+        "trecho": "Decisão: recebo a denúncia (10/02/2021).",
+        "inicio": 0,
+        "fim": 40
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "06971fc9-e671-5d27-b0b2-158af425c6e9",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_publicacao_sentenca",
+    "valor": "2025-08-20",
+    "evidencias": [
+      {
+        "id": "35e3dd00-cc55-59b3-b52e-c092ef365dc2",
+        "pagina_id": "888da8fe-20c8-55e4-afca-0c61d722c406",
+        "trecho": "Sentença publicada em 20/08/2025.",
+        "inicio": 0,
+        "fim": 33
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "7287beb2-34ef-50ee-aace-7f4d44f1fd20",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_nascimento_reu",
+    "valor": {
+      "valor": "1985-04-02",
+      "reu_id": "reu-1"
+    },
+    "evidencias": [
+      {
+        "id": "e20a95ea-b177-5bea-8b6c-1e41630007e0",
+        "pagina_id": "4dc3b4fa-2c24-5579-b252-b355434e9344",
+        "trecho": "Qualificação: nascido em 02/04/1985.",
+        "inicio": 0,
+        "fim": 36
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "be840d1b-999f-5077-837d-91b6646aef59",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_decretacao_preventiva",
+    "valor": "2026-05-04",
+    "evidencias": [
+      {
+        "id": "ca498d85-5cc4-56fe-af85-ac217a2bc843",
+        "pagina_id": "a129000c-2702-592e-afe1-d9d79034fef1",
+        "trecho": "Decisão que decreta a prisão preventiva em 04/05/2026.",
+        "inicio": 0,
+        "fim": 54
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "5cea62d7-9529-57d0-8e3d-25f939dce3ae",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_revisao_preventiva",
+    "valor": "2026-07-30",
+    "evidencias": [
+      {
+        "id": "01331011-a8be-561b-9928-9d76a531ada3",
+        "pagina_id": "4f931dbb-f292-53f1-be79-f42921413a1a",
+        "trecho": "Decisão que mantém a preventiva em 30/07/2026.",
+        "inicio": 0,
+        "fim": 46
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  },
+  {
+    "id": "5e806d0e-e78e-5bf5-ae5a-8dffc992bfe1",
+    "processo_id": "846a1485-cf4a-54e8-8bff-247373c9cb7c",
+    "tipo": "data_revisao_preventiva",
+    "valor": "2026-10-01",
+    "evidencias": [
+      {
+        "id": "b27cc997-6c12-5ba1-8248-e943cd70eb56",
+        "pagina_id": "2dbe3164-4022-5afe-8423-5ec874434342",
+        "trecho": "Decisão que mantém a preventiva em 01/10/2026.",
+        "inicio": 0,
+        "fim": 46
+      }
+    ],
+    "extraido_por": "exemplo-manual",
+    "versao_extrator": "0",
+    "confianca": 1.0,
+    "status": "confirmado"
+  }
+]

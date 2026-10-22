@@ -1,0 +1,1 @@
+Revisões da prisão preventiva dentro do prazo de {prazo} dias ({base_legal}). Cadeia: {cadeia}. Maior intervalo: {maior} dias. Data de referência: {referencia}.

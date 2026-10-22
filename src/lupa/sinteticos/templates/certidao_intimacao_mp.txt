@@ -1,0 +1,5 @@
+CERTIDÃO DE INTIMAÇÃO
+
+Certifico que, nesta data, {{data_intimacao_mp:o Ministério Público foi intimado da sentença em $data}}, mediante remessa dos autos com vista.
+
+O referido é verdade e dou fé.

@@ -1,0 +1,1 @@
+A validação {validacao} falhou ao executar ({erro_tipo}: {mensagem}) e não produziu conclusão. Confira manualmente.

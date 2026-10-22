@@ -1,0 +1,25 @@
+# Pesos e limiares do classificador de fronteira por regras (Etapa 4E.2). Mudou um numero,
+# suba a versao. A pontuacao de uma pagina e a soma dos pesos dos sinais presentes (limitada
+# a 1); a pagina comeca peca nova com pontuacao >= forte, ou >= fraca (vai ao assessor, com
+# confianca baixa e flag `fronteira_fraca`).
+versao: "1"
+fonte: >-
+  Calibrado no cenario pdf_liso dos dez processos de referencia em 2026-10-21; matriz e erros
+  em docs/etapas/RELATORIO-ETAPA-4E.2.md.
+pesos:
+  titulo: 0.5
+  # titulo que tambem aparece como secao dentro de outra peca (razoes de apelacao)
+  titulo_secao: 0.25
+  assinatura_anterior: 0.45
+  reinicio_numeracao: 0.3
+  cabecalho_novo: 0.15
+  protocolo_topo: 0.1
+  mudanca_fonte: 0.05
+  mudanca_layout: 0.05
+limiares:
+  forte: 0.8
+  fraca: 0.45
+# diferenca minima de altura mediana de linha (pt) para contar mudanca de fonte
+mudanca_fonte_pt: 1.5
+# semelhanca maxima entre mascaras de cabecalho para contar cabecalho novo
+cabecalho_semelhanca: 0.6

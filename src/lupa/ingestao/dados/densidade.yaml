@@ -1,0 +1,9 @@
+# Densidade de texto por pagina (Etapa 4D.7): caracteres acima do limite marcam
+# `densidade_anomala`. Folha A4 em corpo 12 tem cerca de 3.500 caracteres; corpo 8 denso,
+# cerca de 9.000. Os limites ficam acima disso com folga; nas paginas sinteticas de
+# referencia o maximo medido esta em docs/etapas/RELATORIO-ETAPA-4D.7.md.
+versao: "1"
+max_caracteres:
+  nativa: 15000
+  ocr: 15000
+  vazia: 200

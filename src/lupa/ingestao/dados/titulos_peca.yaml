@@ -1,0 +1,59 @@
+# Titulos de peca (Etapa 4E.1 e 4E.4). Mudou a lista, suba a versao.
+# Cada titulo canonico aponta para o tipo de peca que ele sugere; as variacoes sao comparadas
+# depois de normalizar (maiusculas, sem acento, sem pontuacao). `secao: true` marca titulos que
+# tambem aparecem como secao dentro de outra peca (razoes dentro da peticao de apelacao): valem
+# como sinal de fronteira fraca, nunca forte sozinhos.
+versao: "1"
+titulos:
+  - titulo: DENUNCIA
+    tipo: denuncia
+    variacoes: [DENUNCIA, OFERECIMENTO DE DENUNCIA, ADITAMENTO A DENUNCIA]
+  - titulo: DECISAO
+    tipo: null
+    variacoes: [DECISAO, DECISAO INTERLOCUTORIA, DESPACHO, DESPACHO DECISAO, DECISAO JUDICIAL]
+  - titulo: SENTENCA
+    tipo: sentenca
+    variacoes: [SENTENCA]
+  - titulo: CERTIDAO
+    tipo: certidao
+    variacoes:
+      - CERTIDAO
+      - CERTIDAO DE PUBLICACAO
+      - CERTIDAO DE INTIMACAO
+      - CERTIDAO DE TRANSITO EM JULGADO
+      - CERTIDAO DE ANTECEDENTES
+  - titulo: RECURSO DE APELACAO
+    tipo: recurso
+    variacoes:
+      - RECURSO DE APELACAO
+      - APELACAO
+      - APELACAO CRIMINAL
+      - RECURSO EM SENTIDO ESTRITO
+      - TERMO DE APELACAO
+  - titulo: RAZOES DE APELACAO
+    tipo: recurso
+    secao: true
+    variacoes: [RAZOES DE APELACAO, RAZOES DO RECURSO, RAZOES RECURSAIS]
+  - titulo: CONTRARRAZOES
+    tipo: contrarrazoes
+    variacoes: [CONTRARRAZOES, CONTRARRAZOES DE APELACAO, CONTRA RAZOES, CONTRARRAZOES AO RECURSO]
+  - titulo: ACORDAO
+    tipo: acordao
+    variacoes: [ACORDAO]
+  - titulo: LAUDO PERICIAL
+    tipo: laudo
+    variacoes: [LAUDO PERICIAL, LAUDO, LAUDO DE EXAME, LAUDO DE EXAME DE CORPO DE DELITO]
+  - titulo: TERMO DE DEPOIMENTO
+    tipo: termo_depoimento
+    variacoes:
+      - TERMO DE DEPOIMENTO
+      - TERMO DE INTERROGATORIO
+      - TERMO DE DECLARACOES
+      - TERMO DE AUDIENCIA
+      - TERMO DE INQUIRICAO
+  - titulo: AUTUACAO
+    tipo: outros
+    variacoes: [AUTUACAO, CAPA DE AUTUACAO, TERMO DE AUTUACAO]
+  - titulo: TERMO DE JUNTADA
+    tipo: outros
+    variacoes: [TERMO DE JUNTADA, JUNTADA, CERTIDAO DE JUNTADA]

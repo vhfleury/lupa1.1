@@ -1,0 +1,22 @@
+# Limiares do roteador de paginas (Etapa 4C.4). Mudou um numero, suba a versao.
+versao: "1"
+fonte: >-
+  Calibrado nas paginas dos dez processos de referencia (.sinteticos/referencia, cenario
+  pdf_liso, 15.647 folhas) em 2026-10-20; matriz de confusao em
+  docs/etapas/RELATORIO-ETAPA-4C.4.md. Imagens opacas de carimbo/logo reais podem levar
+  paginas nativas a abstencao (custo de OCR, nunca perda de conteudo).
+vazia:
+  # pagina sem tinta visivel e quase sem texto
+  max_caracteres: 3
+nativa:
+  min_caracteres: 20
+  # fracao da pagina coberta por imagem opaca (conteudo digitalizado)
+  max_area_imagem_opaca: 0.005
+  max_fragmentacao: 0.5
+  # fracao de U+FFFD sobre os caracteres imprimiveis
+  max_substituicao: 0.02
+  # texto em fonte < 4 pt, branco ou fora da pagina: forca OCR para comparar camadas
+  max_caracteres_invisiveis: 0
+digitalizada:
+  min_area_imagem_opaca: 0.85
+  max_caracteres: 20

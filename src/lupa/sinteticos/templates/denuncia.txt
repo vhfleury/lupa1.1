@@ -1,0 +1,17 @@
+DENÚNCIA
+
+[[EXCELENTÍSSIMO SENHOR JUIZ DE DIREITO DA VARA CRIMINAL DA COMARCA DE VILA ESPERANÇA||EXMO. SR. DR. JUIZ DE DIREITO DA VARA CRIMINAL DE VILA ESPERANÇA]]
+
+O MINISTÉRIO PÚBLICO DO ESTADO, por seu Promotor de Justiça que esta subscreve, no uso de suas atribuições legais, com base no inquérito policial anexo, vem oferecer DENÚNCIA em desfavor de $reu, brasileiro, inscrito no CPF sob o nº $cpf, {{data_nascimento_reu:nascido em $nascimento}}, residente na $endereco, pelos fatos a seguir narrados.
+
+[[Consta dos autos do inquérito policial que,||Segundo apurado no procedimento investigatório,]] {{data_fato:no dia $data_fato}}, por volta das $hora horas, na $local, o denunciado $conduta, em prejuízo de $vitima.
+
+[[A materialidade está demonstrada pelo auto de apreensão e pelo laudo pericial juntados, e os indícios de autoria decorrem dos depoimentos colhidos na fase policial.||Materialidade e autoria encontram suporte no boletim de ocorrência, no laudo pericial e nas declarações das testemunhas.]]
+
+Assim agindo, o denunciado incorreu nas sanções do $artigo, {{pena_maxima_abstrata:$pena_texto}}.
+
+Diante do exposto, requer o Ministério Público o recebimento da presente denúncia, a citação do denunciado para responder à acusação, a oitiva das testemunhas abaixo arroladas e, ao final, a condenação nos termos da lei.
+
+Rol de testemunhas: 1) $testemunha; 2) $vitima.
+
+{{data_denuncia:Vila Esperança, $data.}}

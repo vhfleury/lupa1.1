@@ -1,0 +1,9 @@
+LAUDO PERICIAL
+
+Instituto de Criminalística de Vila Esperança. Requisição da autoridade policial referente ao fato ocorrido em $data_fato, envolvendo $reu.
+
+O perito $perito, designado para o exame, descreve os materiais recebidos, os procedimentos adotados e as conclusões a seguir.
+
+[[Foram examinados os vestígios recolhidos no local, devidamente lacrados e identificados.||O material foi recebido em embalagem lacrada, com cadeia de custódia documentada.]] Os exames foram realizados segundo as normas técnicas vigentes.
+
+Vila Esperança, $data.

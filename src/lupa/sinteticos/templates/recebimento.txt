@@ -1,0 +1,13 @@
+DECISÃO
+
+Vistos.
+
+[[O Ministério Público ofereceu denúncia em desfavor de $reu, imputando-lhe a prática do crime previsto no $artigo.||Trata-se de denúncia oferecida pelo Ministério Público contra $reu pela suposta prática do delito tipificado no $artigo.]]
+
+A peça acusatória descreve fato típico, com todas as suas circunstâncias, qualifica o acusado e vem acompanhada de elementos mínimos de autoria e materialidade, não se verificando nenhuma das hipóteses de rejeição do art. 395 do Código de Processo Penal.
+
+{{data_recebimento_denuncia:Assim, recebo a denúncia em $data}}, nos termos do art. 396 do Código de Processo Penal.
+
+Cite-se o acusado para responder à acusação, por escrito, no prazo de 10 (dez) dias. Ciência ao Ministério Público.
+
+Vila Esperança, $data.

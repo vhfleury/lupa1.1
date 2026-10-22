@@ -1,0 +1,54 @@
+# Padroes de instrucao dirigida a sistemas automatizados (Etapa 4D.5).
+# Aplicados sobre o texto normalizado (4D.3), em minusculas e sem acentos (escreva os padroes
+# assim). Cada ocorrencia vira trecho suspeito; nada e removido. Peca legitima pode conter
+# imperativos ("o sistema processual deve", "ignora-se a tese"): os padroes exigem um
+# destinatario de maquina, um pedido de ignorar instrucoes/regras, um pedido de revelar dados
+# ou uma ordem de alterar o resultado. Mudou um padrao, suba a versao e rode a regressao
+# (tests/ingestao/test_injecao_corpus.py) para medir recall e falso positivo.
+versao: "1"
+categorias:
+  dirigido_a_sistema:
+    - id: ds01_rotulo_com_dois_pontos
+      regex: '\b(?:sistemas?|assistentes?|modelos?|ia|system|assistant|model|ai|llm|chatbot)\s*:\s'
+    - id: ds02_instrucao_para
+      regex: '\b(?:instrucao|instrucoes|nota|mensagem|aviso|ordem|comando|recado)\s+(?:ao|a|aos|as|para\s+(?:o|a|os|as|qualquer))\s+(?:sistemas?|assistentes?|modelos?|ias?|inteligencia\s+artificial|robos?)\b'
+    - id: ds03_destinatario_automatizado
+      regex: '\b(?:sistemas?|assistentes?|modelos?|agentes?|leitores?)\s+(?:automatizad[oa]s?|automatic[oa]s?|de\s+ia|de\s+inteligencia\s+artificial)\b'
+    - id: ds04_atencao_sistema
+      regex: '\b(?:atencao|attention|aviso|alerta)\s*[,:!-]?\s*(?:ao\s+)?(?:sistemas?|assistentes?|modelos?|ia|system|assistant|model|ai)\b'
+    - id: ds05_ingles_destinatario
+      regex: '\b(?:note|message|instructions?|reminder)\s+(?:to|for)\s+(?:any|the|all|every)?\s*(?:ai|assistant|model|llm|language\s+model|automated)\b'
+    - id: ds06_vocativo
+      regex: '(?:^|[.;!?"]\s*)(?:caro|cara|prezado|prezada|ola|oi|ei|dear|hey|hello)?\s*(?:assistente|modelo|ia|assistant|chatgpt|claude|gpt|llm)\s*,\s'
+    - id: ds07_ingles_sistema
+      regex: '\b(?:any|the)\s+(?:ai|llm|language\s+model)\s+(?:system|assistant|model|reviewing|reading|processing)\b'
+  ignorar_instrucoes:
+    - id: ig01_ignore_regras
+      regex: '\b(?:ignore|ignorem|desconsidere|desconsiderem|esqueca|esquecam|abandone|disregard|forget|override)\s+(?:(?:todas?|todos|as|os|o|a|suas|seus|quaisquer|all|any|the|your|previous|prior|above)\s+)*(?:instruc\w+|regras?|orientac\w+|diretrizes|comandos?|prompts?|restric\w+|instructions?|rules?|guidelines|directions?)\b'
+    - id: ig02_ignore_laudo_ou_prova
+      regex: '\b(?:ignore|ignorem|desconsidere|desconsiderem|disregard)\s+(?:o|a|os|as|this|the)\s+(?:laudo|prova|documento|sentenca|denuncia|certidao|anterior|anteriores|acima|report|evidence|document)\b'
+    - id: ig03_instrucoes_anteriores
+      regex: '\b(?:instrucoes|regras|comandos)\s+(?:anteriores|acima|previas)\b|\b(?:previous|prior|above)\s+(?:instructions|rules|prompts?)\b'
+  revelar_dados:
+    - id: rv01_revele
+      regex: '\b(?:revele|revelem|liste|listem|exiba|exibam|mostre|mostrem|imprima|informe|vaze|reveal|list|print|output|show|leak|dump)\s+(?:(?:os|as|o|a|todos|todas|the|all|your)\s+)*(?:cpfs?|rgs?|senhas?|tokens?|prompts?|system\s+prompt|instrucoes\s+(?:do|de)\s+sistema|dados\s+(?:pessoais|sigilosos)|nomes?\s+(?:reais|verdadeiros)|passwords?|credentials?|secrets?)\b'
+    - id: rv02_outro_processo
+      regex: '\b(?:de|dos|das|em)\s+outros?\s+(?:processos?|autos|casos|tenants?|gabinetes?)\b.{0,40}?\b(?:cpfs?|dados|nomes?|reus?)\b|\b(?:cpfs?|dados|nomes?)\b.{0,40}?\b(?:de|dos)\s+outros\s+(?:processos|autos|casos)\b|\bother\s+(?:cases|processes|tenants|users)\b'
+  alterar_resultado:
+    - id: ar01_declare
+      regex: '\b(?:declare|declarem|considere|considerem|registre|registrem|classifique|classifiquem|marque|trate|reconheca|aponte)\s+(?:que\s+)?(?:(?:o|a|os|as|este|esta|esse|essa|como)\s+)*(?:recursos?|apelac\w+|prescric\w+|documento|peca|intimac\w+|fato|achados?|data|prazo|tempestiv\w+|intempestiv\w+|sentenca|pena)\b'
+    - id: ar02_nao_registre_achado
+      regex: '\bnao\s+(?:registre|aponte|sinalize|marque|reporte|indique|gere|crie)\s+(?:(?:nenhum|nenhuma|qualquer|o|a|os|as)\s+)*(?:achados?|alertas?|intempestividade|prescricao|irregularidade|apontamentos?)\b'
+    - id: ar03_ingles_resultado
+      regex: '\b(?:must|should)\s+not\s+be\s+(?:flagged|reported|marked|listed)\b|\b(?:do\s+not|don.t|never)\s+(?:flag|report|mention|mark|list)\b|\b(?:classify|mark|treat|declare|consider)\s+(?:this|the)\s+(?:document|appeal|case|deadline)\b'
+    - id: ar04_classifique_como
+      regex: '\bclassifique\s+(?:este|esta|o|a)?\s*\w+\s+como\b'
+  marcacao_de_prompt:
+    - id: mp01_papel_no_inicio
+      regex: '(?m)^\s*(?:system|assistant|user|human|sistema|assistente|usuario)\s*:'
+    - id: mp02_tokens_de_chat
+      regex: '<\|?\s*(?:im_start|im_end|system|endoftext|assistant|user)\s*\|?>|\[/?inst\]|<<\s*/?sys\s*>>'
+    - id: mp03_cabecalho_markdown
+      regex: '(?m)^\s*#{2,}\s*(?:instruction|instrucao|system|sistema|new\s+instructions?|novas?\s+instruc\w+)\b'
+    - id: mp04_tags
+      regex: '</?\s*(?:system|assistant|instructions?|prompt)\s*>'

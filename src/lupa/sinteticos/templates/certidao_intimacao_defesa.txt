@@ -1,0 +1,5 @@
+CERTIDÃO DE INTIMAÇÃO
+
+Certifico que {{data_intimacao_defesa:o defensor $defensor foi intimado da sentença em $data}}, por publicação no diário eletrônico.
+
+O referido é verdade e dou fé.

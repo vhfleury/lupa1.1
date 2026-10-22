@@ -1,0 +1,7 @@
+CERTIDÃO DE INTIMAÇÃO
+
+Certifico que, em cumprimento ao mandado, dirigi-me ao endereço indicado e ali {{data_intimacao_reu:intimei pessoalmente o réu $reu em $data}}, que ficou ciente do inteiro teor da sentença.
+
+[[O réu manifestou desejo de recorrer.||O réu exarou sua ciência e declarou que deseja recorrer.]]
+
+O referido é verdade e dou fé.

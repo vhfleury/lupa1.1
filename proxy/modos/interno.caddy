@@ -1,0 +1,8 @@
+# Modo `interno` (desenvolvimento): CA interna do Caddy, certificado autoassinado novo a cada subida.
+# HSTS mantido: o E2E (front/e2e/testes/seguranca.spec.ts) e a varredura de cabecalhos o exigem, e
+# o navegador IGNORA HSTS recebido com certificado nao confiavel (nao fixa localhost).
+localhost:8443, proxy:8443 {
+	tls internal
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	import lupa_site
+}

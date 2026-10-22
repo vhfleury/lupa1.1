@@ -1,0 +1,9 @@
+TERMO DE DEPOIMENTO
+
+Aos $data, na sala de audiências da Vara Criminal da Comarca de Vila Esperança, presente o MM. Juiz de Direito, compareceu a testemunha $testemunha, compromissada na forma da lei.
+
+[[Às perguntas do Ministério Público, respondeu:||Inquirida pela acusação, disse:]] que conhece o acusado $reu de vista; que no dia dos fatos estava nas proximidades da $local; que ouviu gritos e viu uma pessoa saindo apressada.
+
+[[Às perguntas da defesa, respondeu:||Pela defesa, foi perguntado e respondeu:]] que não sabe precisar o horário exato; que a iluminação no local era fraca; que não conversou com o acusado.
+
+Nada mais disse nem lhe foi perguntado. Lido e achado conforme, vai devidamente assinado.

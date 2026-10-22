@@ -1,0 +1,143 @@
+# Perfil de PRODUCAO do Lupa (Etapa 8.1). Sobreposicao do docker-compose.yml:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# (ou exporte COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml; o instalar_piloto.sh faz).
+#
+# - Nenhuma porta publicada alem do proxy: 443 (HTTPS) e 80 (so desafio ACME e redirecionamento).
+#   A porta direta da API (API_PORTA_HOST) e o console do MinIO deixam de existir.
+# - restart: unless-stopped, limites de memoria e CPU e logs com rotacao em todos os servicos.
+# - read_only onde a imagem ja permite (front, proxy, redis, backup-agendado, prometheus).
+# - Vault com mlock (cap IPC_LOCK, vault/producao/lupa.hcl).
+# - Dados em LUPA_DADOS_DIR (de preferencia outro disco), um subdiretorio por volume; o
+#   instalar_piloto.sh cria os subdiretorios com o dono certo de cada imagem.
+# - backup-agendado sempre ligado (diario + expurgo semanal) gravando em LUPA_BACKUP_DIR.
+# Limites: padroes para o host recomendado (8 CPUs, 16 GB); ajuste por variavel se preciso.
+
+x-comum: &comum
+  restart: unless-stopped
+  logging:
+    driver: json-file
+    options:
+      max-size: "${LUPA_LOG_MAX_SIZE:-10m}"
+      max-file: "${LUPA_LOG_MAX_FILE:-5}"
+
+services:
+  api:
+    <<: *comum
+    ports: !reset []
+    deploy:
+      resources:
+        limits: {cpus: "${LUPA_API_CPUS:-2}", memory: "${LUPA_API_MEMORIA:-2g}"}
+
+  worker:
+    <<: *comum
+    deploy:
+      resources:
+        # O OCR e o gargalo: 4 lotes x 1 GB de sandbox + o processo do worker.
+        limits: {cpus: "${LUPA_WORKER_CPUS:-6}", memory: "${LUPA_WORKER_MEMORIA:-6g}"}
+
+  front:
+    <<: *comum
+    deploy:
+      resources:
+        limits: {cpus: "0.5", memory: 128m}
+
+  proxy:
+    <<: *comum
+    ports: !override
+      - "${LUPA_PROXY_IP:-0.0.0.0}:443:8443"
+      - "${LUPA_PROXY_IP:-0.0.0.0}:80:8080"
+    environment:
+      XDG_CONFIG_HOME: /tmp/config
+      # Certificados do ACME persistem (limites de emissao do Let's Encrypt).
+      XDG_DATA_HOME: /data
+      LUPA_TLS_MODO: ${LUPA_TLS_MODO:-acme}
+      LUPA_DOMINIO: ${LUPA_DOMINIO:-lupa.exemplo}
+      LUPA_ACME_EMAIL: ${LUPA_ACME_EMAIL:-}
+    volumes:
+      - caddy-dados:/data
+      - ${LUPA_TLS_CERT:-./proxy/modos/sem-certificado.pem}:/certs/lupa.crt:ro
+      - ${LUPA_TLS_CHAVE:-./proxy/modos/sem-certificado.pem}:/certs/lupa.key:ro
+    deploy:
+      resources:
+        limits: {cpus: "1", memory: 256m}
+
+  redis:
+    <<: *comum
+    read_only: true
+    tmpfs: [/data]
+    deploy:
+      resources:
+        limits: {cpus: "0.5", memory: 256m}
+
+  vault:
+    <<: *comum
+    # mlock exige a capability no binario (setcap feito pelo entrypoint), que o no-new-privileges
+    # anularia; por isso o Vault, e so ele, fica sem no-new-privileges.
+    environment:
+      VAULT_ADDR: http://127.0.0.1:8200
+    cap_add: [IPC_LOCK]
+    security_opt: !reset []
+    volumes: !override
+      - ./vault/producao:/vault/config:ro
+      - vault-dados:/vault/file
+    deploy:
+      resources:
+        limits: {cpus: "0.5", memory: 512m}
+
+  db:
+    <<: *comum
+    deploy:
+      resources:
+        limits: {cpus: "2", memory: "${LUPA_DB_MEMORIA:-3g}"}
+
+  minio:
+    <<: *comum
+    ports: !reset []
+    deploy:
+      resources:
+        limits: {cpus: "1", memory: 1g}
+
+  minio-init:
+    restart: "no"
+    logging:
+      driver: json-file
+      options: {max-size: 1m, max-file: "2"}
+
+  backup-agendado:
+    <<: *comum
+    profiles: !reset []
+    deploy:
+      resources:
+        limits: {cpus: "1", memory: 512m}
+
+  prometheus:
+    <<: *comum
+    deploy:
+      resources:
+        limits: {cpus: "0.5", memory: 512m}
+
+  grafana:
+    <<: *comum
+    deploy:
+      resources:
+        limits: {cpus: "0.5", memory: 256m}
+
+volumes:
+  db-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/db"}
+  minio-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/minio"}
+  vault-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/vault"}
+  caddy-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/caddy"}
+  prometheus-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/prometheus"}
+  grafana-dados:
+    driver: local
+    driver_opts: {type: none, o: bind, device: "${LUPA_DADOS_DIR:-/srv/lupa/dados}/grafana"}

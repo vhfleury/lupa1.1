@@ -1,0 +1,17 @@
+# Tabela mínima de tipos penais com a pena máxima em abstrato, em meses (Etapa 4F.2).
+# A CONFIRMAR PELO GABINETE: valores registrados de memória, só para o caput (sem qualificadoras,
+# causas de aumento ou diminuição). Usada quando a denúncia cita o artigo sem transcrever a
+# pena, e para conferir a pena transcrita.
+versao: "1"
+status: "a confirmar pelo gabinete"
+tipos:
+  - {artigo: "121", lei: "cp", pena_maxima_meses: 240, descricao: "homicídio simples"}
+  - {artigo: "129", lei: "cp", pena_maxima_meses: 12, descricao: "lesão corporal"}
+  - {artigo: "147", lei: "cp", pena_maxima_meses: 6, descricao: "ameaça"}
+  - {artigo: "155", lei: "cp", pena_maxima_meses: 48, descricao: "furto"}
+  - {artigo: "157", lei: "cp", pena_maxima_meses: 120, descricao: "roubo"}
+  - {artigo: "171", lei: "cp", pena_maxima_meses: 60, descricao: "estelionato"}
+  - {artigo: "180", lei: "cp", pena_maxima_meses: 48, descricao: "receptação"}
+  - {artigo: "33", lei: "11.343", pena_maxima_meses: 180, descricao: "tráfico de drogas"}
+  - {artigo: "14", lei: "10.826", pena_maxima_meses: 48, descricao: "porte ilegal de arma de uso permitido"}
+  - {artigo: "306", lei: "9.503", pena_maxima_meses: 36, descricao: "embriaguez ao volante"}

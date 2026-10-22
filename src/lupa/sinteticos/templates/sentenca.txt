@@ -1,0 +1,17 @@
+SENTENÇA
+
+Vistos e examinados.
+
+O Ministério Público denunciou $reu como incurso no $artigo, pelos fatos descritos na inicial acusatória, ocorridos em $data_fato.
+
+A denúncia foi recebida, o acusado foi citado e apresentou resposta à acusação. Durante a instrução, foram ouvidas as testemunhas e realizado o interrogatório. Em alegações finais, o Ministério Público pediu a condenação e a defesa, a absolvição por insuficiência de provas.
+
+[[É o relatório. Decido.||É o breve relatório. Fundamento e decido.]]
+
+A materialidade está comprovada pelo laudo pericial e pelo auto de apreensão. A autoria, por sua vez, decorre da prova oral produzida sob o contraditório, coerente com os elementos do inquérito.
+
+Na dosimetria, {{reincidente:$reincidencia_texto}}, razão pela qual fixo a pena-base no mínimo legal, tornando-a definitiva à míngua de outras causas modificadoras.
+
+Ante o exposto, JULGO PROCEDENTE a pretensão punitiva para CONDENAR $reu pela prática do crime previsto no $artigo.
+
+{{data_sentenca:Publique-se. Registre-se. Intimem-se. Vila Esperança, $data.}}

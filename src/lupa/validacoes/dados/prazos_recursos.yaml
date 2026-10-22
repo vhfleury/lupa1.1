@@ -1,0 +1,17 @@
+# Prazos de interposição de recursos criminais. Citados de memória no catálogo: confirmar com o gabinete.
+versao: "2026.10.0"
+fonte: "Código de Processo Penal, arts. 586, 593, 619 e 798 (texto consolidado do Planalto; pendente de confirmação pelo gabinete)"
+contagem_base_legal: "art. 798, caput e §§ 1º e 3º, CPP: dias corridos, exclui o dia do começo, inclui o do vencimento, prorroga vencimento em dia sem expediente"
+recursos:
+  apelacao:
+    nome: "Apelação"
+    dias: 5
+    base_legal: "art. 593, caput, CPP"
+  rese:
+    nome: "Recurso em sentido estrito"
+    dias: 5
+    base_legal: "art. 586, caput, CPP"
+  embargos_declaracao:
+    nome: "Embargos de declaração"
+    dias: 2
+    base_legal: "art. 619 CPP"

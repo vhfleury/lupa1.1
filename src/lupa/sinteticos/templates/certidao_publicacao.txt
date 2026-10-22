@@ -1,0 +1,5 @@
+CERTIDÃO DE PUBLICAÇÃO
+
+Certifico, para os devidos fins, que {{data_publicacao_sentenca:a sentença foi publicada em cartório em $data}}, sendo registrada no livro próprio.
+
+O referido é verdade e dou fé.

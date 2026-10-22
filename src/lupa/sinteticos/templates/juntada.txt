@@ -1,0 +1,5 @@
+TERMO DE JUNTADA
+
+Junto a estes autos os documentos que seguem, recebidos em $data, referentes ao acusado $reu.
+
+[[Os documentos foram conferidos com os originais.||Documentos digitalizados conforme recebidos.]]

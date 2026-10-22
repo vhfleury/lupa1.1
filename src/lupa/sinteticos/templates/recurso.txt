@@ -1,0 +1,13 @@
+RECURSO DE APELAÇÃO
+
+[[EXCELENTÍSSIMO SENHOR JUIZ DE DIREITO DA VARA CRIMINAL DA COMARCA DE VILA ESPERANÇA||EXMO. SR. JUIZ DE DIREITO DA VARA CRIMINAL DE VILA ESPERANÇA]]
+
+$reu, já qualificado nos autos, por seu defensor, inconformado com a sentença condenatória, vem, respeitosamente, {{tipo_recurso:interpor recurso de APELAÇÃO}}, com fundamento no art. 593, I, do Código de Processo Penal.
+
+RAZÕES DE APELAÇÃO
+
+[[A sentença merece reforma, pois a prova produzida em juízo é frágil e não autoriza a condenação.||A condenação apoiou-se em elementos colhidos exclusivamente no inquérito, em afronta ao art. 155 do Código de Processo Penal.]] As testemunhas não presenciaram os fatos e o reconhecimento não observou o art. 226 do Código de Processo Penal.
+
+Subsidiariamente, requer a redução da pena e a substituição da pena privativa de liberdade por restritivas de direitos.
+
+Termos em que pede deferimento. {{data_interposicao_recurso:Petição protocolada em $data}}.

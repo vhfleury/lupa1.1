@@ -1,0 +1,11 @@
+# Modo `acme` (producao com dominio publico): certificado automatico (Let's Encrypt) para
+# LUPA_DOMINIO, desafio HTTP-01 na porta 80 do host (mapeada para 8080 do conteiner), e-mail de
+# contato LUPA_ACME_EMAIL. Renovacao automatica; dados do ACME no volume `caddy-dados`.
+# So TLS 1.3 (secao 6 dos requisitos). HSTS ligado: o certificado e real.
+{$LUPA_DOMINIO} {
+	tls {$LUPA_ACME_EMAIL} {
+		protocols tls1.3
+	}
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	import lupa_site
+}

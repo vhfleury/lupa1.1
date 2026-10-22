@@ -1,0 +1,282 @@
+{
+  "uid": "lupa-piloto",
+  "title": "Lupa — piloto",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Cofre",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_cofre_ok",
+          "legendFormat": "cofre",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "SELADO",
+                  "color": "red"
+                },
+                "1": {
+                  "text": "destravado",
+                  "color": "green"
+                }
+              }
+            }
+          ],
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Idade da fila (s)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_ingestao_idade_fila_segundos",
+          "legendFormat": "idade",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1800
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Chamadas ao modelo (24 h)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 6,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_modelo_chamadas_24h",
+          "legendFormat": "chamadas",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Tokens do modelo (24 h)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 0,
+        "w": 6,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(lupa_modelo_tokens_24h)",
+          "legendFormat": "tokens",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Jobs por estado",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 5,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_ingestao_jobs",
+          "legendFormat": "{{estado}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Falhas por motivo",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 5,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_ingestao_falhas_total > 0",
+          "legendFormat": "{{tipo}} {{motivo}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Tokens do modelo por tipo (24 h)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lupa_modelo_tokens_24h",
+          "legendFormat": "{{tipo}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Eventos de auditoria por ação (24 h)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lupa-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 13,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sort_desc(lupa_auditoria_eventos_24h)",
+          "legendFormat": "{{acao}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lupa-prometheus"
+          }
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    }
+  ],
+  "tags": [
+    "lupa"
+  ]
+}

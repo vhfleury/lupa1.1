@@ -1,0 +1,34 @@
+# Segredos
+.env
+.env.*
+!.env.example
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+# Ferramentas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+# Autos sinteticos (Etapa 4B), grandes e fora do repositorio
+.sinteticos/
+# Front (Etapa 6)
+front/node_modules/
+front/build/
+front/.svelte-kit/
+front/e2e/node_modules/
+front/e2e/test-results/
+front/e2e/playwright-report/
+# Backups cifrados e chaves do periodo (Etapa 7.8), nunca no repositorio
+.backups/
+.backup-chaves/
+# Vault de desenvolvimento (Etapa 7.2): chave de unseal e token raiz, nunca no repositorio
+.vault-dev/
+# Segredos em arquivo para Prometheus e Grafana (Etapa 8.1), nunca no repositorio
+.segredos/

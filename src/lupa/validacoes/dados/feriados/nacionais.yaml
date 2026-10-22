@@ -1,0 +1,20 @@
+# Feriados nacionais e pontos facultativos forenses de 2026. Conferir com o calendário oficial antes do uso.
+versao: "2026.10.0"
+fonte: "Lei 662/1949, Lei 6.802/1980, Lei 14.759/2023 e Lei 5.010/1966 art. 62; datas móveis calculadas pela Páscoa de 2026. Pendente de confirmação pelo gabinete"
+abrangencia: "nacional"
+feriados:
+  - {data: 2026-01-01, descricao: "Confraternização Universal"}
+  - {data: 2026-02-16, descricao: "Carnaval (segunda-feira)"}
+  - {data: 2026-02-17, descricao: "Carnaval (terça-feira)"}
+  - {data: 2026-04-01, descricao: "Semana Santa (quarta-feira)"}
+  - {data: 2026-04-02, descricao: "Semana Santa (quinta-feira)"}
+  - {data: 2026-04-03, descricao: "Paixão de Cristo"}
+  - {data: 2026-04-21, descricao: "Tiradentes"}
+  - {data: 2026-05-01, descricao: "Dia do Trabalho"}
+  - {data: 2026-06-04, descricao: "Corpus Christi"}
+  - {data: 2026-09-07, descricao: "Independência do Brasil"}
+  - {data: 2026-10-12, descricao: "Nossa Senhora Aparecida"}
+  - {data: 2026-11-02, descricao: "Finados"}
+  - {data: 2026-11-15, descricao: "Proclamação da República"}
+  - {data: 2026-11-20, descricao: "Dia Nacional de Zumbi e da Consciência Negra"}
+  - {data: 2026-12-25, descricao: "Natal"}

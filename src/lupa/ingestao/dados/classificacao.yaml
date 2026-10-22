@@ -1,0 +1,71 @@
+# Regras de tipo e de origem da peca (Etapas 4E.4 e 4E.5). Mudou um padrao ou um peso, suba a
+# versao. Os padroes sao expressoes regulares aplicadas ao texto normalizado (minusculas, sem
+# acento, sem pontuacao) das primeiras `linhas_inicio` linhas do corpo da peca; o titulo vem
+# da lista de `titulos_peca.yaml`.
+versao: "1"
+linhas_inicio: 18
+peso_titulo: 3.0
+peso_titulo_indefinido: 1.0
+peso_formula: 1.0
+# abaixo disto (ou com margem menor que `margem_minima` sobre o segundo), a peca vira `outros`
+pontuacao_minima: 2.0
+margem_minima: 1.0
+confianca_ambiguo: 0.3
+tipos:
+  denuncia:
+    titulos: [DENUNCIA]
+    formulas: ['oferecer denuncia', 'promotor de justica que esta subscreve', 'denunciado', 'rol de testemunhas']
+  recebimento:
+    titulos: [DECISAO]
+    formulas: ['recebo a denuncia', 'recebimento da denuncia', 'cite se o acusado', 'responder a acusacao']
+  decisao_prisao:
+    titulos: [DECISAO]
+    formulas: ['prisao preventiva', 'custodia cautelar', 'decreto a prisao', 'mantenho a prisao', 'segregacao cautelar', 'art 316', 'periculum libertatis']
+  sentenca:
+    titulos: [SENTENCA]
+    formulas: ['vistos e examinados', 'e o (breve )?relatorio', 'fundamento e decido', 'julgo (im)?procedente', 'absolvo', 'condeno']
+  certidao:
+    titulos: [CERTIDAO]
+    formulas: ['^certifico', 'dou fe', 'o referido e verdade']
+  recurso:
+    titulos: [RECURSO DE APELACAO, RAZOES DE APELACAO]
+    formulas: ['interpor recurso', 'inconformad[oa]', 'razoes de apelacao', 'requer a reforma', 'merece reforma']
+  contrarrazoes:
+    titulos: [CONTRARRAZOES]
+    formulas: ['contrarrazoes', 'desprovimento do recurso', 'inconformismo da defesa']
+  acordao:
+    titulos: [ACORDAO]
+    formulas: ['acordam', 'ementa', 'relator', 'camara criminal']
+  laudo:
+    titulos: [LAUDO PERICIAL]
+    formulas: ['instituto de criminalistica', 'o perito', 'exames? (foram|foi) realizad', 'vestigios']
+  termo_depoimento:
+    titulos: [TERMO DE DEPOIMENTO]
+    formulas: ['compareceu a testemunha', 'nada mais disse', 'compromissad[oa] na forma da lei', 'as perguntas d']
+  outros:
+    titulos: [AUTUACAO, TERMO DE JUNTADA]
+    formulas: ['^junto a estes autos', 'autuado em', '^classe ']
+# Origem: assinatura (cargo do signatario) decide com confianca alta; sem assinatura, o
+# vocabulario do inicio da peca decide com confianca media; sem nada, `desconhecida`.
+origem:
+  confianca_assinatura: 0.95
+  confianca_vocabulario: 0.7
+  confianca_cargo_aproximado: 0.8
+  # cargo com erro de OCR: semelhanca minima com um cargo canonico (difflib)
+  semelhanca_cargo: 0.72
+  cargos_canonicos:
+    juizo: [juiz de direito, desembargador]
+    mp: [promotor de justica, procurador de justica]
+    defesa: [advogado, defensor publico]
+    terceiro: [perito criminal, delegado de policia, medico legista]
+  cargos:
+    # palavras soltas do cargo, para tolerar erro de OCR no resto ("Perivo rirúinal")
+    juizo: ['juiz[a]? de direito', 'juiz[a]? federal', 'desembargador[a]?', 'relator[a]?', 'escrivao judicial', 'analista judiciario', 'diretor[a]? de secretaria', 'chefe de cartorio', 'de direito\b']
+    mp: ['promotor[a]? de justica', 'procurador[a]? de justica', 'procurador[a]? da republica', 'promotor', 'de justica\b']
+    defesa: ['advogad[oa]', '\boab\b', 'defensor[a]? public[oa]', 'defensor[a]?']
+    terceiro: ['perit[oa]', 'delegad[oa] de policia', 'escrivao de policia', 'testemunha', 'medico legista', 'oficial de justica', 'criminal\b', 'legista']
+  vocabulario:
+    mp: ['^o ministerio publico', 'ministerio publico do estado .{0,40}vem', 'promotor de justica que esta subscreve']
+    defesa: ['por seu (defensor|advogado)', 'por sua defensora', 'por intermedio de seu advogado']
+    juizo: ['^vistos', 'certifico', 'acordam', '^autuacao', 'autuado em']
+    terceiro: ['instituto de criminalistica', 'compareceu a testemunha']

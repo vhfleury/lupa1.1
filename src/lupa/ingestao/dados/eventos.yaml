@@ -1,0 +1,75 @@
+# Padrões de extração de eventos por tipo de peça (Etapa 4F.2).
+# Os padrões rodam sobre o texto normalizado e "dobrado" (minúsculas, sem acento) da página;
+# por isso estão sem acento. `gatilho` é uma expressão regular; a data é a primeira (ou a última,
+# com `ultima: true`) reconhecida por lupa.ingestao.datas que começa até `janela` caracteres
+# depois do fim do gatilho. A evidência vai do início do gatilho ao fim da data, no texto
+# original da página. `pecas` lista os tipos de peça onde a regra roda; `outros` cobre peça não
+# classificada. `por_reu: true` grava o valor como {"valor", "reu_id"}.
+# Mudar este arquivo exige subir `versao`: a versão vai para fato.versao_extrator e dispara o
+# reprocessamento só dos eventos (4F.8).
+versao: "4f.1"
+regras:
+  - tipo: data_fato
+    pecas: [denuncia]
+    gatilhos: ['\bno\s+dia\b', '\bfatos?\s+ocorrid[oa]s?\s+em\b']
+    janela: 40
+    confianca: 0.9
+  - tipo: data_nascimento_reu
+    pecas: [denuncia]
+    gatilhos: ['\bnascid[oa]\s+(?:em|aos)\b', '\bdata\s+de\s+nascimento\b:?']
+    janela: 30
+    confianca: 0.95
+    por_reu: true
+  - tipo: data_denuncia
+    pecas: [denuncia]
+    gatilhos: ['(?m)^[a-z][^\n,]{2,60},\s*']
+    janela: 3
+    ultima: true
+    confianca: 0.85
+  - tipo: data_recebimento_denuncia
+    pecas: [recebimento, outros]
+    gatilhos: ['\brecebo\s+a\s+denuncia\b', '\bdenuncia\s+(?:foi\s+)?recebida\s+em\b']
+    janela: 60
+    confianca: 0.95
+  - tipo: data_decretacao_preventiva
+    pecas: [decisao_prisao, outros]
+    gatilhos: ['\bdecret[oa]\s+a\s+prisao\s+preventiva\b', '\bconverto\s+a\s+prisao\s+em\s+flagrante\s+em\s+(?:prisao\s+)?preventiva\b']
+    janela: 160
+    confianca: 0.9
+  - tipo: data_revisao_preventiva
+    pecas: [decisao_prisao, outros]
+    gatilhos: ['\bmantenho\s+a\s+(?:prisao\s+preventiva|custodia\s+cautelar|segregacao\s+cautelar)\b']
+    janela: 40
+    confianca: 0.9
+  - tipo: data_sentenca
+    pecas: [sentenca, outros]
+    gatilhos: ['\bpublique-se[.,]?\s+registre-se[.,]?\s+intimem-se[.,]?']
+    janela: 80
+    confianca: 0.9
+  - tipo: data_publicacao_sentenca
+    pecas: [certidao, outros]
+    gatilhos: ['\bsentenca\s+foi\s+publicada(?:\s+em\s+cartorio)?\s+em\b', '\bpublicad[ao]\s+a\s+(?:r\.\s+)?sentenca\b']
+    janela: 40
+    confianca: 0.95
+  - tipo: data_intimacao_defesa
+    pecas: [certidao, outros]
+    gatilhos: ['\b(?:o|a)\s+(?:defensor|defensora|advogad[oa]|defensoria\s+publica)\b[\s\S]{0,120}?\bintimad[oa]\b']
+    janela: 40
+    confianca: 0.9
+  - tipo: data_intimacao_mp
+    pecas: [certidao, outros]
+    gatilhos: ['\bministerio\s+publico\s+foi\s+intimado\b', '\bintimad[oa]\s+o\s+ministerio\s+publico\b']
+    janela: 60
+    confianca: 0.9
+  - tipo: data_intimacao_reu
+    pecas: [certidao, outros]
+    gatilhos: ['\bintimei\s+pessoalmente\s+o\s+(?:reu|acusado|sentenciado)\b', '\b(?:reu|acusado)\s+foi\s+intimad[oa]\s+pessoalmente\b']
+    janela: 140
+    confianca: 0.9
+    por_reu: true
+  - tipo: data_interposicao_recurso
+    pecas: [recurso]
+    gatilhos: ['\bprotocolad[ao]\s+em\b', '\binterpost[oa]\s+em\b']
+    janela: 30
+    ultima: true
+    confianca: 0.9

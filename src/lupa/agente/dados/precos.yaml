@@ -1,0 +1,21 @@
+# Tabela de precos do modelo para o custo ESTIMADO do relatorio de uso (Etapa 6.9; revisao 5,
+# item 5). Valores publicos da API propria da Anthropic, em dolar por milhao de tokens. Sao
+# estimativa: a confirmar na fatura (cache, lote, modo rapido e impostos nao entram). Mudou um
+# preco: suba `versao`, atualize `fonte` e rode tests/auditoria/test_custo.py.
+versao: "2026-10-06"
+fonte: "Tabela publica de precos da API da Anthropic (platform.claude.com/pricing), valores de 2026-10-06"
+moeda: "USD"
+observacao: "Estimativa a confirmar na fatura."
+modelos:
+  claude-opus-5-5:
+    entrada_por_milhao: 4.00
+    saida_por_milhao: 20.00
+  claude-opus-5:
+    entrada_por_milhao: 5.00
+    saida_por_milhao: 25.00
+  claude-sonnet-5-5:
+    entrada_por_milhao: 2.00
+    saida_por_milhao: 10.00
+  claude-haiku-5-5:
+    entrada_por_milhao: 0.10
+    saida_por_milhao: 0.50

@@ -1,0 +1,29 @@
+# Alertas minimos (Etapa 8.1). Sem Alertmanager no piloto: os alertas aparecem em
+# http://127.0.0.1:9090/alerts e no painel do Grafana; ligar notificacao e decisao do responsavel.
+groups:
+  - name: lupa
+    rules:
+      - alert: LupaFilaParada
+        expr: lupa_ingestao_idade_fila_segundos > 1800
+        for: 5m
+        labels: {severidade: alta}
+        annotations:
+          resumo: "Fila de ingestao parada: job em recebido ha mais de 30 min"
+      - alert: LupaFalhasDeIngestao
+        expr: sum(increase(lupa_ingestao_falhas_total[1h])) > 3
+        for: 0m
+        labels: {severidade: media}
+        annotations:
+          resumo: "Mais de 3 jobs falhos ou em quarentena na ultima hora"
+      - alert: LupaCofreSelado
+        expr: lupa_cofre_ok == 0
+        for: 2m
+        labels: {severidade: critica}
+        annotations:
+          resumo: "Cofre selado ou fora: nada dos autos pode ser lido (unseal, operacao.md 4.2)"
+      - alert: LupaApiFora
+        expr: up{job="lupa"} == 0
+        for: 5m
+        labels: {severidade: critica}
+        annotations:
+          resumo: "Prometheus nao consegue raspar a API"

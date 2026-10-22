@@ -1,0 +1,197 @@
+/* Tema: tokens claros por padrão, escuros quando o sistema pede ou o usuário escolhe.
+   Contraste mínimo AA (4.5:1) nos dois, conferido pelo axe no E2E (6.10). */
+:root {
+  --fundo: #f6f7f9;
+  --superficie: #ffffff;
+  --texto: #1b1f24;
+  --texto-suave: #4a5260;
+  --borda: #c9ced6;
+  --primaria: #1f4fa3;
+  --primaria-texto: #ffffff;
+  --perigo: #a3231f;
+  --perigo-fundo: #fdecea;
+  --sucesso: #1d6b35;
+  --sucesso-fundo: #e7f4ea;
+  --aviso-fundo: #fff6dc;
+  --aviso-texto: #5c4300;
+  --foco: #c77c00;
+  --raio: 6px;
+  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+/* Tema escuro: pelo sistema (modo "sistema") ou escolhido à mão (6.10; guardado só em
+   localStorage, aplicado por /inicio.js antes do primeiro desenho). */
+:root[data-tema='escuro'] {
+  color-scheme: dark;
+  --fundo: #12151a;
+  --superficie: #1b2027;
+  --texto: #e8ebef;
+  --texto-suave: #aab2bf;
+  --borda: #3a424e;
+  --primaria: #8fb4ff;
+  --primaria-texto: #0b1424;
+  --perigo: #ff9c95;
+  --perigo-fundo: #3a1a19;
+  --sucesso: #8fdca6;
+  --sucesso-fundo: #15301e;
+  --aviso-fundo: #3a3016;
+  --aviso-texto: #ffe08a;
+  --foco: #ffc24d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) {
+    color-scheme: dark;
+    --fundo: #12151a;
+    --superficie: #1b2027;
+    --texto: #e8ebef;
+    --texto-suave: #aab2bf;
+    --borda: #3a424e;
+    --primaria: #8fb4ff;
+    --primaria-texto: #0b1424;
+    --perigo: #ff9c95;
+    --perigo-fundo: #3a1a19;
+    --sucesso: #8fdca6;
+    --sucesso-fundo: #15301e;
+    --aviso-fundo: #3a3016;
+    --aviso-texto: #ffe08a;
+    --foco: #ffc24d;
+  }
+}
+
+:root[data-tema='claro'] {
+  color-scheme: light;
+}
+
+.raiz {
+  display: contents;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primaria);
+}
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+input,
+select {
+  font: inherit;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 0.5rem 0.6rem;
+  width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--raio);
+  border: 1px solid var(--primaria);
+  background: var(--primaria);
+  color: var(--primaria-texto);
+  padding: 0.45rem 0.9rem;
+}
+
+button.secundario {
+  background: transparent;
+  color: var(--primaria);
+}
+
+button.perigo {
+  background: transparent;
+  color: var(--perigo);
+  border-color: var(--perigo);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.campo {
+  margin-bottom: 1rem;
+}
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+
+.dica {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.mono {
+  font-family: var(--mono);
+  word-break: break-all;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--superficie);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: top;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

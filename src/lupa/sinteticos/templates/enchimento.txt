@@ -1,0 +1,23 @@
+Consta do relatório de investigação que a equipe compareceu ao local e realizou diligências na vizinhança, sem localizar câmeras de monitoramento em funcionamento.
+
+A testemunha $testemunha relatou que o movimento na $local era intenso naquele período e que não se recorda de detalhes adicionais.
+
+Foram juntados aos autos o ofício nº $numero_oficio, recebido em $data_distracao, e a resposta da operadora de telefonia, sem informações relevantes para o caso.
+
+O acusado $reu, ouvido em sede policial, preferiu permanecer em silêncio, direito que lhe foi assegurado.
+
+O exame complementar foi agendado e posteriormente realizado, conforme termo de comparecimento lavrado em $data_distracao.
+
+[[A defesa requereu vista dos autos fora de cartório, o que foi deferido.||A defesa constituída pediu cópia integral dos autos, deferida pela secretaria.]]
+
+O laudo de avaliação indireta estimou o valor dos bens em quantia compatível com a nota fiscal apresentada pela vítima $vitima.
+
+Certifica-se que o mandado foi cumprido e devolvido em cartório, sem intercorrências, em $data_distracao.
+
+Na análise do aparelho celular apreendido, não foram encontradas mensagens trocadas com a vítima no período investigado.
+
+A audiência designada para $data_distracao foi redesignada em razão da ausência justificada de testemunha arrolada pela acusação.
+
+Tabela de bens apreendidos: item 1, aparelho celular; item 2, mochila preta; item 3, documentos pessoais em nome de terceiro.
+
+O relatório final da autoridade policial concluiu pela existência de indícios suficientes de autoria e materialidade.

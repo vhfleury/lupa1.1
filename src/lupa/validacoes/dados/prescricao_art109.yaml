@@ -1,0 +1,32 @@
+# Tabela do art. 109 do CP (pena máxima em meses) e redução do art. 115. Confirmar com o gabinete.
+versao: "2026.10.0"
+fonte: "Código Penal, arts. 109 e 115 (redação da Lei 12.234/2010 para o inciso VI; pendente de confirmação pelo gabinete)"
+base_legal: "art. 109 CP"
+faixas:
+  - inciso: "I"
+    prazo_anos: 20
+    acima_de_meses: 144
+  - inciso: "II"
+    prazo_anos: 16
+    acima_de_meses: 96
+    ate_meses: 144
+  - inciso: "III"
+    prazo_anos: 12
+    acima_de_meses: 48
+    ate_meses: 96
+  - inciso: "IV"
+    prazo_anos: 8
+    acima_de_meses: 24
+    ate_meses: 48
+  - inciso: "V"
+    prazo_anos: 4
+    a_partir_de_meses: 12
+    ate_meses: 24
+  - inciso: "VI"
+    prazo_anos: 3
+    abaixo_de_meses: 12
+reducao:
+  idade_no_fato_abaixo_de: 21
+  idade_na_sentenca_a_partir_de: 70
+  divisor: 2
+  base_legal: "art. 115 CP"

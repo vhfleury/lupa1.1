@@ -1,0 +1,13 @@
+DECISÃO
+
+Vistos.
+
+Cuida-se de representação da autoridade policial, com parecer favorável do Ministério Público, pela decretação da prisão preventiva de $reu, investigado pela prática, em tese, do crime previsto no $artigo.
+
+[[Há prova da existência do crime e indícios suficientes de autoria, conforme os elementos colhidos no inquérito.||Presentes o fumus commissi delicti e o periculum libertatis, como se extrai dos elementos de informação.]] A gravidade concreta da conduta e o risco de reiteração recomendam a medida para garantia da ordem pública, não sendo suficientes as cautelares diversas do art. 319 do Código de Processo Penal.
+
+Ante o exposto, {{data_decretacao_preventiva:decreto a prisão preventiva de $reu, nesta data, $data}}, com fundamento nos arts. 312 e 313 do Código de Processo Penal.
+
+Expeça-se mandado de prisão. Intimem-se.
+
+Vila Esperança, $data.

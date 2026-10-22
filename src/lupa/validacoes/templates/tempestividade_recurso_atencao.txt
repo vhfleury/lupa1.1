@@ -1,0 +1,1 @@
+Recurso possivelmente intempestivo. {recurso} interposto em {interposicao}, {diferenca} dia(s) após o vencimento em {vencimento} ({prorrogacao}); prazo de {prazo_dias} dias ({base_legal}) contado a partir de {data_base} ({origem_data_base}). Confira as intimações e o calendário do tribunal.

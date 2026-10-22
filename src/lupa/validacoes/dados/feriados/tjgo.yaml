@@ -1,0 +1,9 @@
+# Dias sem expediente no TJGO em 2026. Lista provisória: o gabinete deve substituir pela portaria oficial do tribunal.
+versao: "2026.10.0-provisorio"
+fonte: "Provisória, sem portaria conferida. Substituir pelo calendário oficial do TJGO para 2026"
+abrangencia: "TJGO"
+feriados:
+  - {data: 2026-08-11, descricao: "Dia do Magistrado (a confirmar)"}
+  - {data: 2026-10-24, descricao: "Aniversário de Goiânia (a confirmar)"}
+  - {data: 2026-10-28, descricao: "Dia do Servidor Público (a confirmar)"}
+  - {data: 2026-12-08, descricao: "Dia da Justiça (a confirmar)"}
